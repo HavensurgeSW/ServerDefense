@@ -12,4 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 364d846c3f5aed343b79552cd788564a, type: 3}
   m_Name: FirstWaveCommands
   m_EditorClassIdentifier: 
-  commands: []
+  commands:
+  - help
+  - hello world
