@@ -13,3 +13,5 @@ MonoBehaviour:
   m_Name: HELP_Command
   m_EditorClassIdentifier: 
   id: help
+  response:
+  - Try writing "cd <LOCATION>"

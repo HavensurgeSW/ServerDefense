@@ -13,3 +13,5 @@ MonoBehaviour:
   m_Name: HELLO_Command
   m_EditorClassIdentifier: 
   id: hello
+  response:
+  - Welcome to the system, Administrator

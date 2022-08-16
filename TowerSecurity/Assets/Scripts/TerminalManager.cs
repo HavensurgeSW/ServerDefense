@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System;
 using UnityEngine.Events;
 using UnityEngine;
 using UnityEngine.UI;
@@ -7,7 +8,6 @@ using TMPro;
 
 public class TerminalManager : MonoBehaviour
 {
-  
 
     public GameObject directoryLine;
     public GameObject responseLine;
@@ -19,13 +19,18 @@ public class TerminalManager : MonoBehaviour
 
     Interpreter interpreter;
 
-    private void Start()
+    private Func<string, List<string>> OnInputCommand;
+
+    public void Init(Func<string, List<string>> a)
     {
         interpreter = GetComponent<Interpreter>();
 
         terminalInput.ActivateInputField();
         terminalInput.Select();
+        OnInputCommand = a;
     }
+  
+    
 
     private void OnGUI()
     {
@@ -34,7 +39,7 @@ public class TerminalManager : MonoBehaviour
             string userInput = terminalInput.text;
             ClearInputField();
             AddDirectoryLine(userInput);
-            int lines = AddInterpreterLines(interpreter.Interpret(userInput));
+            int lines = AddInterpreterLines(OnInputCommand(userInput)); //Sends info to Manager
             ScrollToBottom(lines);
 
             userInputLine.transform.SetAsLastSibling();
@@ -85,4 +90,6 @@ public class TerminalManager : MonoBehaviour
             sr.verticalNormalizedPosition = 0;
         }
     }
+
+   
 }
