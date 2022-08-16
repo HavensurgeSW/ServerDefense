@@ -6,7 +6,7 @@ public class Location : MonoBehaviour
 {
     bool isSelected;
     public SpriteRenderer sr;
-    public string ID;
+    public string id;
 
     private void Start()
     {
@@ -17,7 +17,7 @@ public class Location : MonoBehaviour
         isSelected = b;
     }
 
-    void ToggleColor(Color clr) {
+    public void ToggleColor(Color clr) {
         sr.color = clr;
     }
 }

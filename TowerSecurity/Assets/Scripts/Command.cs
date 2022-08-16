@@ -8,8 +8,8 @@ using UnityEngine.Events;
 public class Command
 {
     [SerializeField] private CommandInfo info;
-    [SerializeField] private UnityEvent callback;
+    [SerializeField] private UnityEvent<string[]> callback;
 
     public CommandInfo INFO { get => info; }
-    public UnityEvent CALLBACK { get => callback; }
+    public UnityEvent<string[]> CALLBACK { get => callback; }
 }
