@@ -15,19 +15,17 @@ public class Interpreter : MonoBehaviour
         if (args[0] == "help")
         {
             response.Add("You should try 'hello' ");
-            response.Add("This is the second line to return");
-
-            return response;
-
         }
         else if (args[0] == "hello") {
             response.Add("Welcome to the system, Administrator");
-            return response;
         }
         else{
             response.Add("Command not recognized. Type \"help\" for a list of commands");
-
-            return response;
         }
+
+
+
+
+        return response;
     }
 }

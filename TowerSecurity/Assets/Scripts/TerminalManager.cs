@@ -1,11 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.Events;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
 public class TerminalManager : MonoBehaviour
 {
+  
+
     public GameObject directoryLine;
     public GameObject responseLine;
 
@@ -54,7 +57,7 @@ public class TerminalManager : MonoBehaviour
         GameObject msg = Instantiate(directoryLine, msgList.transform);
         msg.transform.SetSiblingIndex(msgList.transform.childCount - 1);
 
-        msg.GetComponentsInChildren <TMP_Text>()[1].text = userInput;
+        msg.GetComponentsInChildren<TMP_Text>()[1].text = userInput;
 
     }
 
