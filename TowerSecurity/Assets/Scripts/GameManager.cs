@@ -62,7 +62,7 @@ public class GameManager : MonoBehaviour
             else
             {
                 loc.ToggleSelected(false);
-                loc.ToggleColor(Color.green);
+                loc.ToggleColor(Color.white);
             }
         }
     }
