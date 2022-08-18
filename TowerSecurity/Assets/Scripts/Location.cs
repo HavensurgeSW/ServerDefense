@@ -8,9 +8,12 @@ public class Location : MonoBehaviour
     public SpriteRenderer sr;
     public string id;
 
+    public Tower tower;
+
     private void Start()
     {
         isSelected = false;
+        tower = null;
     }
 
     public void ToggleSelected(bool b) {
@@ -19,5 +22,17 @@ public class Location : MonoBehaviour
 
     public void ToggleColor(Color clr) {
         sr.color = clr;
+    }
+
+    public bool CheckForLocationAvailability() {
+        if (tower == null)
+            return true;
+        else
+            return false;
+    }
+
+    public void TowerInstaller(Tower t) {
+        tower = t;
+        Instantiate(t, transform);
     }
 }

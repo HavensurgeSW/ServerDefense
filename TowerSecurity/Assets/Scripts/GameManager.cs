@@ -25,7 +25,7 @@ public class GameManager : MonoBehaviour
         s.ToLower();
         string[] arguments = s.Split(' ');
        
-        bool searchHit = false;
+        
 
         foreach (Command cmd in commands)
         {
@@ -37,7 +37,7 @@ public class GameManager : MonoBehaviour
                     tempArg[i-1] = arguments[i];
                 }
 
-                searchHit = true;
+               
                 cmd.CALLBACK?.Invoke(tempArg);
                 return cmd.INFO.RESPONSE; 
             }
@@ -65,6 +65,16 @@ public class GameManager : MonoBehaviour
                 loc.ToggleColor(Color.white);
             }
         }
+    }
+
+    public void InstallTower(string[] arg) {
+
+
+
+        if (currentLocation != null&&currentLocation.CheckForLocationAvailability()) {
+            currentLocation.TowerInstaller();
+        }
+            
     }
 
 }
