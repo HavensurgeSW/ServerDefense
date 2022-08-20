@@ -12,7 +12,6 @@ public class GameManager : MonoBehaviour
 
     public Location[] locations;
   
-
     Location currentLocation;
 
     private void Awake()
@@ -69,10 +68,8 @@ public class GameManager : MonoBehaviour
 
     public void InstallTower(string[] arg) {
 
-
-
         if (currentLocation != null&&currentLocation.CheckForLocationAvailability()) {
-            currentLocation.TowerInstaller();
+            
         }
             
     }

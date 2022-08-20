@@ -17,14 +17,13 @@ public class TerminalManager : MonoBehaviour
     public ScrollRect sr;
     public GameObject msgList;
 
-    Interpreter interpreter;
+
 
     private Func<string, List<string>> OnInputCommand;
 
     public void Init(Func<string, List<string>> a)
     {
-        interpreter = GetComponent<Interpreter>();
-
+        
         terminalInput.ActivateInputField();
         terminalInput.Select();
         OnInputCommand = a;

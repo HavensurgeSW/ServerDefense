@@ -7,13 +7,11 @@ public class Location : MonoBehaviour
     bool isSelected;
     public SpriteRenderer sr;
     public string id;
-
-    public Tower tower;
+    private bool availability;
 
     private void Start()
     {
         isSelected = false;
-        tower = null;
     }
 
     public void ToggleSelected(bool b) {
@@ -25,14 +23,11 @@ public class Location : MonoBehaviour
     }
 
     public bool CheckForLocationAvailability() {
-        if (tower == null)
-            return true;
-        else
-            return false;
+        return availability;
     }
 
-    public void TowerInstaller(Tower t) {
-        tower = t;
-        Instantiate(t, transform);
+    public void SetAvailable(bool b) {
+        availability = b;   
     }
+
 }
