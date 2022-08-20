@@ -17,19 +17,16 @@ public class TerminalManager : MonoBehaviour
     public ScrollRect sr;
     public GameObject msgList;
 
+    //private Func<string, List<string>> OnInputCommand;
+    private Action<string> OnInputCommand;
 
-
-    private Func<string, List<string>> OnInputCommand;
-
-    public void Init(Func<string, List<string>> a)
+    public void Init(Action<string> a)
     {
-        
         terminalInput.ActivateInputField();
         terminalInput.Select();
         OnInputCommand = a;
     }
   
-    
 
     private void OnGUI()
     {
@@ -38,9 +35,7 @@ public class TerminalManager : MonoBehaviour
             string userInput = terminalInput.text;
             ClearInputField();
             AddDirectoryLine(userInput);
-            int lines = AddInterpreterLines(OnInputCommand(userInput)); //Sends info to Manager
-            ScrollToBottom(lines);
-
+            OnInputCommand(userInput);
             userInputLine.transform.SetAsLastSibling();
 
             //refocus input field
@@ -65,7 +60,7 @@ public class TerminalManager : MonoBehaviour
 
     }
 
-    int AddInterpreterLines(List<string> interpretation) {
+    public void AddInterpreterLines(List<string> interpretation) {
         for (int i = 0; i < interpretation.Count; i++)
         {
             GameObject res = Instantiate(responseLine, msgList.transform);
@@ -77,7 +72,7 @@ public class TerminalManager : MonoBehaviour
             res.GetComponentInChildren<TMP_Text>().text = interpretation[i];
         }
 
-        return interpretation.Count;
+        ScrollToBottom(interpretation.Count);
     }
 
     void ScrollToBottom(int lines) {
