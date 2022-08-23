@@ -13,5 +13,9 @@ MonoBehaviour:
   m_Name: HELLO_Command
   m_EditorClassIdentifier: 
   id: hello
-  response:
+  argCount: 0
+  succResponse:
   - Welcome to the system, Administrator
+  helpResponse: []
+  errorResponse:
+  - This is the HELLO error message

@@ -57,6 +57,12 @@ public class GameManager : MonoBehaviour
         bool searchHit = false;
         foreach (Location loc in locations)
         {
+            if (locName == "help") {
+                terminal.AddInterpreterLines(cmdi.HELPRESPONSE);
+                searchHit = true;
+                break;
+            }
+
             if (loc.id == locName)
             {
                 currentLocation = loc;
@@ -71,17 +77,22 @@ public class GameManager : MonoBehaviour
             }
         }
 
-        if (searchHit) {
+
+
+        if (!searchHit) {
             terminal.AddInterpreterLines(cmdi.ERRORRESPONSE);
         }
+    }
+
+    public void Hello(string[] arg, CommandInfo cmdi) {
+        terminal.AddInterpreterLines(cmdi.SUCCRESPONSE);
     }
 
     public void InstallTower(string[] arg) {
 
         if (currentLocation != null&&currentLocation.CheckForLocationAvailability()) {
             
-        }
-            
+        } 
     }
 
 }

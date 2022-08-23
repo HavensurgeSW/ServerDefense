@@ -13,3 +13,9 @@ MonoBehaviour:
   m_Name: CD_Command
   m_EditorClassIdentifier: 
   id: cd
+  argCount: 0
+  succResponse: []
+  helpResponse:
+  - CD <Location>. Use NETSTAT to find a list of locations.
+  errorResponse:
+  - '<CD>: Location not found'
