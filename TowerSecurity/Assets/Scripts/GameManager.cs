@@ -57,7 +57,7 @@ public class GameManager : MonoBehaviour
         bool searchHit = false;
         foreach (Location loc in locations)
         {
-            if (locName == "help") {
+            if (locName == "help" ||locName == "?") {
                 terminal.AddInterpreterLines(cmdi.HELPRESPONSE);
                 searchHit = true;
                 break;
@@ -88,10 +88,11 @@ public class GameManager : MonoBehaviour
         terminal.AddInterpreterLines(cmdi.SUCCRESPONSE);
     }
 
-    public void InstallTower(string[] arg) {
+    public void InstallTower(string[] arg, CommandInfo cmdi){
 
         if (currentLocation != null&&currentLocation.CheckForLocationAvailability()) {
-            
+            currentLocation.SetAvailable(false);
+
         } 
     }
 
