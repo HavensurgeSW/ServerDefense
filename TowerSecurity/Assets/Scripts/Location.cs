@@ -7,11 +7,12 @@ public class Location : MonoBehaviour
     bool isSelected;
     public SpriteRenderer sr;
     public string id;
-    private bool availability;
+    [SerializeField]private bool availability;
 
     private void Start()
     {
         isSelected = false;
+        availability = true;
     }
 
     public void ToggleSelected(bool b) {

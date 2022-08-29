@@ -1308,7 +1308,6 @@ GameObject:
   - component: {fileID: 1494227065}
   - component: {fileID: 1494227064}
   - component: {fileID: 1494227068}
-  - component: {fileID: 1494227069}
   m_Layer: 5
   m_Name: UI
   m_TagString: Untagged
@@ -1416,18 +1415,6 @@ MonoBehaviour:
   userInputLine: {fileID: 636638132}
   sr: {fileID: 1161712455}
   msgList: {fileID: 631500357}
---- !u!114 &1494227069
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1494227063}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6f33dd5c0f1b9544388e3d188ee460c7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1509897019
 GameObject:
   m_ObjectHideFlags: 0
@@ -1553,7 +1540,7 @@ MonoBehaviour:
         m_Calls:
         - m_Target: {fileID: 1899149029}
           m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-          m_MethodName: ChangeDirectory
+          m_MethodName: InstallTower
           m_Mode: 0
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -1564,6 +1551,7 @@ MonoBehaviour:
             m_BoolArgument: 0
           m_CallState: 2
   terminal: {fileID: 1494227068}
+  prefab: {fileID: 151229865600273899, guid: 73cf3649d8aca5d418cb9101dd424837, type: 3}
   locations:
   - {fileID: 189514094}
   - {fileID: 1273675038}

@@ -10,6 +10,8 @@ public class GameManager : MonoBehaviour
     [SerializeField]private List<Command> commands = new List<Command>();
     [SerializeField]private TerminalManager terminal;
 
+    public Tower prefab;
+
     public Location[] locations;
   
     Location currentLocation;
@@ -90,10 +92,26 @@ public class GameManager : MonoBehaviour
 
     public void InstallTower(string[] arg, CommandInfo cmdi){
 
-        if (currentLocation != null&&currentLocation.CheckForLocationAvailability()) {
-            currentLocation.SetAvailable(false);
+        if (arg[0] == "help" || arg[0] == "?")
+        {
+            terminal.AddInterpreterLines(cmdi.HELPRESPONSE);
+        }
 
-        } 
+        if (currentLocation != null&&currentLocation.CheckForLocationAvailability()){
+            
+
+            if (arg[0] == "antivirus")
+            {
+                currentLocation.SetAvailable(false);
+                Instantiate(prefab,currentLocation.transform);
+                terminal.AddInterpreterLines(cmdi.SUCCRESPONSE);
+            }
+            else {
+                terminal.AddInterpreterLines(cmdi.ERRORRESPONSE);
+            }
+
+
+        }
     }
 
 }

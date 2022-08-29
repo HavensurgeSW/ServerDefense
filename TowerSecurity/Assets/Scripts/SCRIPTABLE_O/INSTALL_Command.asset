@@ -14,4 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: install
   argCount: 1
-  response: []
+  succResponse:
+  - Tower installed
+  helpResponse:
+  - Install a program on an available location
+  - INSTALL <Program>
+  errorResponse:
+  - Location unavailable or tower type does not exist
