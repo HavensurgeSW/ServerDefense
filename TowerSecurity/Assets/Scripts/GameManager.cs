@@ -98,8 +98,6 @@ public class GameManager : MonoBehaviour
         }
 
         if (currentLocation != null&&currentLocation.CheckForLocationAvailability()){
-            
-
             if (arg[0] == "antivirus")
             {
                 currentLocation.SetAvailable(false);
@@ -109,8 +107,6 @@ public class GameManager : MonoBehaviour
             else {
                 terminal.AddInterpreterLines(cmdi.ERRORRESPONSE);
             }
-
-
         }
     }
 
