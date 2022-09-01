@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour
     [SerializeField]private TerminalManager terminal;
 
     public Tower prefab;
+    public Tower prefab2;
 
     public Location[] locations;
   
@@ -107,7 +108,24 @@ public class GameManager : MonoBehaviour
             else {
                 terminal.AddInterpreterLines(cmdi.ERRORRESPONSE);
             }
+
+            if (arg[0] == "firewall")
+            {
+                currentLocation.SetAvailable(false);
+                Instantiate(prefab2, currentLocation.transform);
+                terminal.AddInterpreterLines(cmdi.SUCCRESPONSE);
+            }
+            else
+            {
+                terminal.AddInterpreterLines(cmdi.ERRORRESPONSE);
+            }
         }
+    }
+
+    public void WriteTutorial(string[] arg, CommandInfo cmdi) {
+        
+
+        terminal.AddInterpreterLines(cmdi.SUCCRESPONSE);
     }
 
 }
