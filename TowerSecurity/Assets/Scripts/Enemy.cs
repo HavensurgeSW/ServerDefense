@@ -10,10 +10,12 @@ public class Enemy : MonoBehaviour
 
     public int DAMAGE { get => damage; }
 
+    [SerializeField]Healthbar enemyHP;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        enemyHP.SetMaxHP(hp);
     }
 
     // Update is called once per frame
@@ -25,6 +27,7 @@ public class Enemy : MonoBehaviour
     public void ReceiveDamage(int dmg)
     {
         hp = hp - dmg;
+        enemyHP.SetHealthbarFill(hp);
         if (hp <= 0) {
             Die();
         }
