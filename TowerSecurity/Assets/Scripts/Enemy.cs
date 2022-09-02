@@ -6,6 +6,7 @@ public class Enemy : MonoBehaviour
 {
     [SerializeField] private float speed = 5f;
     [SerializeField] private int damage = 1;
+    [SerializeField] private int hp = 3;
 
     public int DAMAGE { get => damage; }
 
@@ -19,6 +20,14 @@ public class Enemy : MonoBehaviour
     void Update()
     {
         transform.Translate(speed * Time.deltaTime * Vector3.left);
+    }
+
+    public void ReceiveDamage(int dmg)
+    {
+        hp = hp - dmg;
+        if (hp <= 0) {
+            Die();
+        }
     }
 
     public void Die() {

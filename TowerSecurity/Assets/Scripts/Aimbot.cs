@@ -23,5 +23,17 @@ public class Aimbot : MonoBehaviour
             targets.Remove(collision.gameObject);
     }
 
+    public bool ContainsTargets() {
+        return (targets != null && targets.Count > 0);
+    }
+
+    public GameObject GetTarget(int i) { 
+        return targets[i];
+    }
+
+    public T GetTarget<T>(int i) where T : Component {  
+        return targets[i].GetComponent<T>();
+    }
+
 
 }
