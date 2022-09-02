@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Pool;
 
 public class ObjectPooler : MonoBehaviour
 {
@@ -16,21 +17,24 @@ public class ObjectPooler : MonoBehaviour
         CreatePooler();
     }
 
-    private void CreatePooler() {
+    private void CreatePooler()
+    {
         for (int i = 0; i < poolSize; i++)
         {
             _pool.Add(CreateInstance());
         }
     }
 
-    private GameObject CreateInstance() {
+    private GameObject CreateInstance()
+    {
         GameObject newInstance = Instantiate(prefab);
         newInstance.transform.SetParent(_poolContainer.transform);
         newInstance.SetActive(false);
         return newInstance;
     }
 
-    public GameObject GetInstanceFromPool() {
+    public GameObject GetInstanceFromPool()
+    {
         for (int i = 0; i < _pool.Count; i++)
         {
             if (!_pool[i].activeInHierarchy)
@@ -39,12 +43,15 @@ public class ObjectPooler : MonoBehaviour
         return CreateInstance();
     }
 
-    public static void ReturnToPool(GameObject instance) {
+    public static void ReturnToPool(GameObject instance)
+    {
         instance.SetActive(false);
     }
 
-    public static IEnumerator ReturnToPoolWithDelay(GameObject instance, float delay) {
+    public static IEnumerator ReturnToPoolWithDelay(GameObject instance, float delay)
+    {
         yield return new WaitForSeconds(delay);
         instance.SetActive(false);
     }
+
 }
