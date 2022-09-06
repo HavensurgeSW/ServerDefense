@@ -8,8 +8,6 @@ using TMPro;
 
 public class TerminalManager : MonoBehaviour
 {
-
-    public GameObject directoryLine;
     public GameObject responseLine;
 
     public TMP_InputField terminalInput;
@@ -50,11 +48,6 @@ public class TerminalManager : MonoBehaviour
 
     void AddDirectoryLine(string userInput) {
 
-        GameObject msg = Instantiate(directoryLine, msgList.transform);
-        msg.transform.SetSiblingIndex(msgList.transform.childCount - 1);
-
-        msg.GetComponentsInChildren<TMP_Text>()[1].text = userInput;
-
     }
 
     public void AddInterpreterLines(List<string> interpretation) {
@@ -68,19 +61,8 @@ public class TerminalManager : MonoBehaviour
 
             res.GetComponentInChildren<TMP_Text>().text = interpretation[i];
         }
-
-        ScrollToBottom(interpretation.Count);
     }
 
-    void ScrollToBottom(int lines) {
-        if (lines > 4)
-        {
-            sr.velocity = new Vector2(0, 450);
-        }
-        else {
-            sr.verticalNormalizedPosition = 0;
-        }
-    }
 
    
 }
