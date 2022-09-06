@@ -49,9 +49,6 @@ public class TerminalManager : MonoBehaviour
     }
 
     void AddDirectoryLine(string userInput) {
-        //resizing CMDline container for the scrollrect to stay based.
-        Vector2 msgListSize = msgList.GetComponent<RectTransform>().sizeDelta;
-        //msgList.GetComponent<RectTransform>().sizeDelta = new Vector2(msgListSize.x, msgListSize.y + 35.0f);
 
         GameObject msg = Instantiate(directoryLine, msgList.transform);
         msg.transform.SetSiblingIndex(msgList.transform.childCount - 1);

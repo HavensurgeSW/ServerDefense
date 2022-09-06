@@ -117,7 +117,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 0.5
   damage: 1
-  hp: 3
+  hp: 6
   enemyHP: {fileID: 7480410776335054080}
 --- !u!1001 &4709003824049735364
 PrefabInstance:
