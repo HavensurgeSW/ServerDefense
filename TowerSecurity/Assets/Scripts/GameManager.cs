@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using System.Linq;
 
 
@@ -91,7 +92,9 @@ public class GameManager : MonoBehaviour
     }
 
     public void InstallTower(string[] arg, CommandInfo cmdi){
-
+        //if (arg == null) {
+        //    terminal.AddInterpreterLines(new List<string> { "No <Argument> detected. Use CD HELP for more information" });
+        //}
         if (arg[0] == "help" || arg[0] == "?")
         {
             terminal.AddInterpreterLines(cmdi.HELPRESPONSE);
@@ -124,6 +127,11 @@ public class GameManager : MonoBehaviour
     public void WriteTutorial(string[] arg, CommandInfo cmdi) {
         terminal.AddInterpreterLines(cmdi.SUCCRESPONSE);
     }
+
+    public void ReloadScene(string[] arg, CommandInfo cmdi) {
+        SceneManager.LoadScene(0);
+    }
+
     #endregion
 
 }
