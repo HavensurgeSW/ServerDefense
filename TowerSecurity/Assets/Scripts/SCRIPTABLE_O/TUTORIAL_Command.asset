@@ -17,9 +17,10 @@ MonoBehaviour:
   succResponse:
   - You can use the <HELP> argument on any command for more info
   - 'EG: "cd help" or "cd ?"'
-  - Use CD to move between locations.
+  - Use CD to move between locations
   - Your current locations are LOC1, LOC2
   - INSTALL ANTIVIRUS will deploy a Tower in selected location
   - Use RELOAD to restart the level
+  - Use QUIT APPLICATION to close the program
   helpResponse: []
   errorResponse: []

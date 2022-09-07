@@ -132,6 +132,18 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene(1);
     }
 
+    public void QuitGame(string[] arg, CommandInfo cmdi)
+    {
+        if (arg[0] == "help" || arg[0] == "?")
+        {
+            terminal.AddInterpreterLines(cmdi.HELPRESPONSE);
+        }
+
+        if (arg[0] == "application") {
+            Application.Quit();
+        }
+    }
+
     #endregion
 
 }

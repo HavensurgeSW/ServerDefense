@@ -12,8 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 191838e6e5754f94a9f2873fa5b7bbe2, type: 3}
   m_Name: QUIT_Command
   m_EditorClassIdentifier: 
-  id: 
-  argCount: 0
+  id: quit
+  argCount: 1
   succResponse: []
-  helpResponse: []
+  helpResponse:
+  - Closes SERVERDEFENSE.exe (Quit game)
+  - Use QUIT APPLICATION
   errorResponse: []
