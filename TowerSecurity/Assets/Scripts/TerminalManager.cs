@@ -5,15 +5,18 @@ using UnityEngine.Events;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using static UnityEngine.EventSystems.EventTrigger;
 
 public class TerminalManager : MonoBehaviour
 {
-    public GameObject responseLine;
+    [Header("Prefabs")]
+    public GameObject logPrefab;
 
+    [Header("Required components")]
+    public GameObject console;
     public TMP_InputField terminalInput;
-    public GameObject userInputLine;
-    public ScrollRect sr;
-    public GameObject msgList;
+    public Transform log;
+   
 
     //private Func<string, List<string>> OnInputCommand;
     private Action<string> OnInputCommand;
@@ -32,10 +35,9 @@ public class TerminalManager : MonoBehaviour
             //Store user input && clear the line
             string userInput = terminalInput.text;
             ClearInputField();
-            AddDirectoryLine(userInput);
+            
             OnInputCommand(userInput);
-            userInputLine.transform.SetAsLastSibling();
-
+            
             //refocus input field
             terminalInput.ActivateInputField();
             terminalInput.Select();
@@ -46,22 +48,24 @@ public class TerminalManager : MonoBehaviour
         terminalInput.text = "";
     }
 
-    void AddDirectoryLine(string userInput) {
-
-    }
-
-    public void AddInterpreterLines(List<string> interpretation) {
-        for (int i = 0; i < interpretation.Count; i++)
+    void ClearTerminalLog() {
+        foreach (Transform child in log)
         {
-            GameObject res = Instantiate(responseLine, msgList.transform);
-            res.transform.SetAsLastSibling();
-
-            Vector2 listSize = msgList.GetComponent<RectTransform>().sizeDelta;
-            msgList.GetComponent<RectTransform>().sizeDelta = new Vector2(listSize.x, listSize.y + 35.0f);
-
-            res.GetComponentInChildren<TMP_Text>().text = interpretation[i];
+            Destroy(child.gameObject);
         }
     }
+
+    public void AddInterpreterLines(List<string> userInput) {
+        ClearTerminalLog();
+        GameObject entry;
+        for (int i = 0; i < userInput.Count; i++)
+        {
+            entry = Instantiate(logPrefab, log);
+            entry.GetComponentInChildren<TMP_Text>().text = userInput[i];
+        }
+    }
+
+   
 
 
    

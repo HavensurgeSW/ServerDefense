@@ -46,13 +46,12 @@ public class GameManager : MonoBehaviour
         }
 
         if (!searchHit) {
-            
+            terminal.AddInterpreterLines(new List<string> { "Command not recognized. Type \"help\" for a list of commands" });
         }
 
-       //return new List<string> { "Command not recognized. Type \"help\" for a list of commands" };
     }
 
-   
+    #region COMMAND_IMPLEMENTATIONS
 
     public void ChangeDirectory(string[] arg, CommandInfo cmdi) {
         //arguments.length-1 != argCountSO
@@ -123,9 +122,8 @@ public class GameManager : MonoBehaviour
     }
 
     public void WriteTutorial(string[] arg, CommandInfo cmdi) {
-        
-
         terminal.AddInterpreterLines(cmdi.SUCCRESPONSE);
     }
+    #endregion
 
 }
