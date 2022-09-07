@@ -129,7 +129,7 @@ public class GameManager : MonoBehaviour
     }
 
     public void ReloadScene(string[] arg, CommandInfo cmdi) {
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(1);
     }
 
     #endregion
