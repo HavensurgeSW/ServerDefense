@@ -17,4 +17,5 @@ MonoBehaviour:
   succResponse: []
   helpResponse:
   - Provides a list of locations
+  - Use CD <Location> with these names
   errorResponse: []

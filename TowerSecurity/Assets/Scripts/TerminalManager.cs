@@ -74,7 +74,7 @@ public class TerminalManager : MonoBehaviour
         }
     }
 
-    private void ClearCmdEntries()
+    public void ClearCmdEntries()
     {
         for (int i = 0; i < activeEntries.Count; i++)
         {

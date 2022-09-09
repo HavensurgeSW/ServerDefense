@@ -60,6 +60,11 @@ public class GameManager : MonoBehaviour
     {
         List<string> locList = new List<string>();
 
+        //if (arg[0] == "help" || arg[0] == "?")
+        //{
+        //    terminal.AddInterpreterLines(cmdi.HELPRESPONSE);
+        //}
+
         for (int i = 0; i <levelManager.LOCATIONS.Length; i++)
         {
             locList.Add(levelManager.LOCATIONS[i].ID);
@@ -84,6 +89,7 @@ public class GameManager : MonoBehaviour
                 loc.ToggleSelected(true);
                 loc.ToggleColor(Color.red);
                 searchHit = true;
+                terminal.ClearCmdEntries();
             }
             else
             {

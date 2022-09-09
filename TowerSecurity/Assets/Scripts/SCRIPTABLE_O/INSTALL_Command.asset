@@ -19,5 +19,6 @@ MonoBehaviour:
   helpResponse:
   - Install a program on an available location
   - INSTALL <Program>
+  - 'Current available PROGRAMS: antivirus, firewall'
   errorResponse:
   - Location unavailable or tower type does not exist
