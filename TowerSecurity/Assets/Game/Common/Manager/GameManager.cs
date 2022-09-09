@@ -50,14 +50,9 @@ public class GameManager : MonoBehaviour
 
     #region COMMAND_IMPLEMENTATIONS
 
-    public void ReturnLocations(string[] arg, CommandInfo cmdi)
+    public void Command_ReturnLocations(string[] arg, CommandInfo cmdi)
     {
         List<string> locList = new List<string>();
-
-        //if (arg[0] == "help" || arg[0] == "?")
-        //{
-        //    terminal.AddInterpreterLines(cmdi.HELPRESPONSE);
-        //}
 
         for (int i = 0; i <levelManager.LOCATIONS.Length; i++)
         {
@@ -65,7 +60,7 @@ public class GameManager : MonoBehaviour
         }
         terminal.AddInterpreterLines(locList);
     }
-    public void ChangeDirectory(string[] arg, CommandInfo cmdi) {
+    public void Command_ChangeDirectory(string[] arg, CommandInfo cmdi) {
         //arguments.length-1 != argCountSO
         string locName = arg[0];
         bool searchHit = false;
@@ -99,11 +94,11 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void Hello(string[] arg, CommandInfo cmdi) {
+    public void Command_Hello(string[] arg, CommandInfo cmdi) {
         terminal.AddInterpreterLines(cmdi.SUCCRESPONSE);
     }
 
-    public void InstallTower(string[] arg, CommandInfo cmdi){
+    public void Command_InstallTower(string[] arg, CommandInfo cmdi){
 
         terminal.ClearCmdEntries();
 
@@ -134,16 +129,16 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void WriteTutorial(string[] arg, CommandInfo cmdi)
+    public void Command_WriteTutorial(string[] arg, CommandInfo cmdi)
     {
         terminal.AddInterpreterLines(cmdi.SUCCRESPONSE);
     }
 
-    public void ReloadScene(string[] arg, CommandInfo cmdi) {
+    public void Command_ReloadScene(string[] arg, CommandInfo cmdi) {
         SceneManager.LoadScene(1);
     }
 
-    public void QuitGame(string[] arg, CommandInfo cmdi)
+    public void Command_QuitGame(string[] arg, CommandInfo cmdi)
     {
         if (arg[0] == "help" || arg[0] == "?")
         {
@@ -151,7 +146,11 @@ public class GameManager : MonoBehaviour
         }
 
         if (arg[0] == "application") {
-            Application.Quit();
+#if !UNITY_EDITOR
+        Application.Quit();
+#else
+            UnityEditor.EditorApplication.isPlaying = false;
+#endif
         }
     }
 
