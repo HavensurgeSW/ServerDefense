@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour
     [SerializeField]private List<Command> commands = new List<Command>();
     //[SerializeField]private List<Waypoint> waypoints = new List<Waypoint>();
     [SerializeField]private TerminalManager terminal;
+    [SerializeField]private LevelManager levelManager;
 
     public Tower prefab;
     public Tower prefab2;
