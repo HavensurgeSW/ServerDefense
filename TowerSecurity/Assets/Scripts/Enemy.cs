@@ -5,11 +5,12 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    [SerializeField] private float speed = 5f;
-    [SerializeField] private int damage = 1;
-    [SerializeField] private int hp = 3;
+    [SerializeField] private int damage;
+    [SerializeField] private float speed;
+    [SerializeField] private int hp;
     [SerializeField] private GameObject target;
 
+    EnemyData ENEMYDATA;
     public int DAMAGE { get => damage; }
 
     [SerializeField]Healthbar enemyHP;
@@ -17,6 +18,10 @@ public class Enemy : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        damage = ENEMYDATA.DAMAGE;
+        speed = ENEMYDATA.SPEED;
+        hp = ENEMYDATA.HP;
+        
         enemyHP.SetMaxHP(hp);
     }
 
