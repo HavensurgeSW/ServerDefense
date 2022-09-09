@@ -6,8 +6,10 @@ public class Location : MonoBehaviour
 {
     bool isSelected;
     public SpriteRenderer sr;
-    public string id;
-    [SerializeField]private bool availability;
+    [SerializeField] private string id;
+    [SerializeField] private bool availability;
+
+    public string ID => id;
 
     private void Start()
     {

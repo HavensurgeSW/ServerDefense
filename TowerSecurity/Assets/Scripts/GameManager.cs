@@ -56,6 +56,16 @@ public class GameManager : MonoBehaviour
 
     #region COMMAND_IMPLEMENTATIONS
 
+    public void ReturnLocations(string[] arg, CommandInfo cmdi)
+    {
+        List<string> locList = new List<string>();
+
+        for (int i = 0; i <levelManager.LOCATIONS.Length; i++)
+        {
+            locList.Add(levelManager.LOCATIONS[i].ID);
+        }
+        terminal.AddInterpreterLines(locList);
+    }
     public void ChangeDirectory(string[] arg, CommandInfo cmdi) {
         //arguments.length-1 != argCountSO
         string locName = arg[0];
@@ -68,7 +78,7 @@ public class GameManager : MonoBehaviour
                 break;
             }
 
-            if (loc.id == locName)
+            if (loc.ID == locName)
             {
                 currentLocation = loc;
                 loc.ToggleSelected(true);
