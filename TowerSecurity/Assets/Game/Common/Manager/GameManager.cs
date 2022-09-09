@@ -104,39 +104,38 @@ public class GameManager : MonoBehaviour
     }
 
     public void InstallTower(string[] arg, CommandInfo cmdi){
-        //if (arg == null) {
-        //    terminal.AddInterpreterLines(new List<string> { "No <Argument> detected. Use CD HELP for more information" });
-        //}
+
+        terminal.ClearCmdEntries();
+
         if (arg[0] == "help" || arg[0] == "?")
         {
             terminal.AddInterpreterLines(cmdi.HELPRESPONSE);
         }
 
-        if (currentLocation != null&&currentLocation.CheckForLocationAvailability()){
-            if (arg[0] == "antivirus")
+        if (currentLocation != null && currentLocation.CheckForLocationAvailability())
+        {
+            Tower tower = null;
+            switch (arg[0])
             {
-                currentLocation.SetAvailable(false);
-                Instantiate(prefab,currentLocation.transform);
-                terminal.AddInterpreterLines(cmdi.SUCCRESPONSE);
-            }
-            else {
-                terminal.AddInterpreterLines(cmdi.ERRORRESPONSE);
+                case "antivirus":
+                    tower = prefab;
+                    break;
+                case "firewall":
+                    tower = prefab2;
+                    break;
+                default:
+                    terminal.AddInterpreterLines(cmdi.ERRORRESPONSE);
+                    return;
             }
 
-            if (arg[0] == "firewall")
-            {
-                currentLocation.SetAvailable(false);
-                Instantiate(prefab2, currentLocation.transform);
-                terminal.AddInterpreterLines(cmdi.SUCCRESPONSE);
-            }
-            else
-            {
-                terminal.AddInterpreterLines(cmdi.ERRORRESPONSE);
-            }
+            currentLocation.SetAvailable(false);
+            Instantiate(tower, currentLocation.transform);
+            terminal.AddInterpreterLines(cmdi.SUCCRESPONSE);
         }
     }
 
-    public void WriteTutorial(string[] arg, CommandInfo cmdi) {
+    public void WriteTutorial(string[] arg, CommandInfo cmdi)
+    {
         terminal.AddInterpreterLines(cmdi.SUCCRESPONSE);
     }
 
