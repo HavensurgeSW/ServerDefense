@@ -25,8 +25,8 @@ public class GameManager : MonoBehaviour
     }
 
     void InterpretCommand(string s){
-        s.ToLower();
-        string[] arguments = s.Split(' ');
+        string commandInput = s.ToLower();
+        string[] arguments = commandInput.Split(' ');
         bool searchHit = false;
        
         foreach (Command cmd in commands)

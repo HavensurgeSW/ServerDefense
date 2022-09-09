@@ -1995,10 +1995,6 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-  - info: {fileID: 11400000, guid: e02c6484409529844ad40bb76d80a8c7, type: 2}
-    callback:
-      m_PersistentCalls:
-        m_Calls: []
   - info: {fileID: 11400000, guid: feccb80dd99d840459f64345a4328f9b, type: 2}
     callback:
       m_PersistentCalls:
@@ -2214,10 +2210,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce33868a9cb967e4f8cd6a4a6ec4c83a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  logPrefab: {fileID: 3619965770762739309, guid: 088ab4a67160fbd4b9585d22c48cbd5c, type: 3}
-  console: {fileID: 1772893673}
+  cmdEntryPrefab: {fileID: 3619965770762739309, guid: 088ab4a67160fbd4b9585d22c48cbd5c, type: 3}
   terminalInput: {fileID: 412511002}
-  log: {fileID: 254842453}
+  logHolder: {fileID: 254842453}
 --- !u!4 &2057039513 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 9202163451807312616, guid: 259b9a6def6bb7e43b648e6c83c94c8f, type: 3}

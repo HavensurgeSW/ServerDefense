@@ -1,72 +1,96 @@
-using System.Collections;
-using System.Collections.Generic;
 using System;
-using UnityEngine.Events;
+using System.Collections.Generic;
+
 using UnityEngine;
-using UnityEngine.UI;
+using UnityEngine.Pool;
+
 using TMPro;
-using static UnityEngine.EventSystems.EventTrigger;
 
 public class TerminalManager : MonoBehaviour
 {
     [Header("Prefabs")]
-    public GameObject logPrefab;
+    [SerializeField] private GameObject cmdEntryPrefab = null;
 
     [Header("Required components")]
-    public GameObject console;
-    public TMP_InputField terminalInput;
-    public Transform log;
-   
+    [SerializeField] private TMP_InputField terminalInput = null;
+    [SerializeField] private Transform logHolder = null;
 
-    //private Func<string, List<string>> OnInputCommand;
-    private Action<string> OnInputCommand;
+    private List<CmdEntry> activeEntries = null;
+    private ObjectPool<CmdEntry> entriesPool = null;
 
-    public void Init(Action<string> a)
+    private Action<string> OnInputCommand = null;
+
+    public void Init(Action<string> onInputCommand)
     {
         terminalInput.ActivateInputField();
         terminalInput.Select();
-        OnInputCommand = a;
-    }
-  
+        OnInputCommand = onInputCommand;
 
+        activeEntries = new List<CmdEntry>();
+
+        entriesPool = new ObjectPool<CmdEntry>(CreateEntry, GetEntry, ReleaseEntry);
+    }
+
+    // TODO: CHECK WHY THIS WORKS WITH ONGUI AND NOT WITH UPDATE
     private void OnGUI()
     {
-        if (terminalInput.isFocused && terminalInput.text != "" && Input.GetKeyDown(KeyCode.Return)) {
-            //Store user input && clear the line
-            string userInput = terminalInput.text;
+        if (!terminalInput.isFocused || string.IsNullOrEmpty(terminalInput.text))
+        {
+            return;
+        }
+
+        if (Input.GetKeyDown(KeyCode.Return))
+        {
+            OnInputCommand(terminalInput.text);
+
             ClearInputField();
-            
-            OnInputCommand(userInput);
-            
+
             //refocus input field
             terminalInput.ActivateInputField();
             terminalInput.Select();
         }
     }
 
-    void ClearInputField() {
-        terminalInput.text = "";
+    private void ClearInputField()
+    {
+        terminalInput.text = string.Empty;
     }
 
-    void ClearTerminalLog() {
-        foreach (Transform child in log)
+    private void ClearCmdEntries()
+    {
+        for (int i = 0; i < activeEntries.Count; i++)
         {
-            Destroy(child.gameObject);
+            entriesPool.Release(activeEntries[i]);
         }
+
+        activeEntries.Clear();
     }
 
-    public void AddInterpreterLines(List<string> userInput) {
-        ClearTerminalLog();
-        GameObject entry;
+    public void AddInterpreterLines(List<string> userInput)
+    {
+        ClearCmdEntries();
         for (int i = 0; i < userInput.Count; i++)
         {
-            entry = Instantiate(logPrefab, log);
-            entry.GetComponentInChildren<TMP_Text>().text = userInput[i];
+            CmdEntry entry = entriesPool.Get();
+            entry.SetSiblingIndex(i);
+            entry.SetText(userInput[i]);
+            activeEntries.Add(entry);
         }
     }
 
-   
+    private CmdEntry CreateEntry()
+    {
+        return Instantiate(cmdEntryPrefab, logHolder).GetComponent<CmdEntry>();
+    }
 
+    private void GetEntry(CmdEntry entry)
+    {
+        entry.ToggleStatus(true);
+    }
 
-   
+    private void ReleaseEntry(CmdEntry entry)
+    {
+        entry.SetText(string.Empty);
+        entry.ToggleStatus(false);
+    }
 }
