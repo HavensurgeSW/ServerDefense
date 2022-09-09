@@ -9,6 +9,7 @@ using System.Linq;
 public class GameManager : MonoBehaviour
 {
     [SerializeField]private List<Command> commands = new List<Command>();
+    //[SerializeField]private List<Waypoint> waypoints = new List<Waypoint>();
     [SerializeField]private TerminalManager terminal;
 
     public Tower prefab;
