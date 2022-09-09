@@ -22,38 +22,56 @@ public class TerminalManager : MonoBehaviour
 
     public void Init(Action<string> onInputCommand)
     {
-        terminalInput.ActivateInputField();
-        terminalInput.Select();
         OnInputCommand = onInputCommand;
 
         activeEntries = new List<CmdEntry>();
-
         entriesPool = new ObjectPool<CmdEntry>(CreateEntry, GetEntry, ReleaseEntry);
+
+        SelectInputField();
     }
 
-    // TODO: CHECK WHY THIS WORKS WITH ONGUI AND NOT WITH UPDATE
-    private void OnGUI()
+    public void AddInterpreterLines(List<string> userInput)
     {
-        if (!terminalInput.isFocused || string.IsNullOrEmpty(terminalInput.text))
+        ClearCmdEntries();
+        GenerateCmdEntries(userInput);
+    }
+
+    private void Update()
+    {
+        if (string.IsNullOrEmpty(terminalInput.text))
         {
+            SelectInputField();
             return;
         }
 
         if (Input.GetKeyDown(KeyCode.Return))
         {
             OnInputCommand(terminalInput.text);
-
             ClearInputField();
-
-            //refocus input field
-            terminalInput.ActivateInputField();
-            terminalInput.Select();
+            SelectInputField();
         }
+    }
+
+    private void SelectInputField()
+    {
+        terminalInput.ActivateInputField();
+        terminalInput.Select();
     }
 
     private void ClearInputField()
     {
         terminalInput.text = string.Empty;
+    }
+
+    private void GenerateCmdEntries(List<string> userInput)
+    {
+        for (int i = 0; i < userInput.Count; i++)
+        {
+            CmdEntry entry = entriesPool.Get();
+            entry.SetSiblingIndex(i);
+            entry.SetText(userInput[i]);
+            activeEntries.Add(entry);
+        }
     }
 
     private void ClearCmdEntries()
@@ -64,18 +82,6 @@ public class TerminalManager : MonoBehaviour
         }
 
         activeEntries.Clear();
-    }
-
-    public void AddInterpreterLines(List<string> userInput)
-    {
-        ClearCmdEntries();
-        for (int i = 0; i < userInput.Count; i++)
-        {
-            CmdEntry entry = entriesPool.Get();
-            entry.SetSiblingIndex(i);
-            entry.SetText(userInput[i]);
-            activeEntries.Add(entry);
-        }
     }
 
     private CmdEntry CreateEntry()
