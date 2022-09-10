@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-[CreateAssetMenu(menuName = "EnemyData")]
+[CreateAssetMenu(menuName = "ScriptableObjects/Enemies/EnemyData")]
 public class EnemyData : ScriptableObject
 {
     [SerializeField] private float speed;

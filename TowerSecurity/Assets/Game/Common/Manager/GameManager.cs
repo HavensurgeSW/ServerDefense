@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     [SerializeField] private List<Command> commands = new List<Command>();
+    [SerializeField] private CommandManager commandManager = null;
     [SerializeField] private TerminalManager terminal;
     [SerializeField] private LevelManager levelManager;
 
@@ -66,7 +67,8 @@ public class GameManager : MonoBehaviour
         bool searchHit = false;
         foreach (Location loc in levelManager.LOCATIONS)
         {
-            if (locName == "help" ||locName == "?") {
+            if (commandManager.CheckHelpCommand(arg))
+            {
                 terminal.AddInterpreterLines(cmdi.HELPRESPONSE);
                 searchHit = true;
                 break;
@@ -95,6 +97,13 @@ public class GameManager : MonoBehaviour
     }
 
     public void Command_Hello(string[] arg, CommandInfo cmdi) {
+
+        if (commandManager.CheckHelpCommand(arg))
+        {
+            terminal.AddInterpreterLines(cmdi.HELPRESPONSE);
+            return;
+        }
+
         terminal.AddInterpreterLines(cmdi.SUCCRESPONSE);
     }
 
@@ -102,9 +111,10 @@ public class GameManager : MonoBehaviour
 
         terminal.ClearCmdEntries();
 
-        if (arg[0] == "help" || arg[0] == "?")
+        if (commandManager.CheckHelpCommand(arg))
         {
             terminal.AddInterpreterLines(cmdi.HELPRESPONSE);
+            return;
         }
 
         if (currentLocation != null && currentLocation.CheckForLocationAvailability())
@@ -140,7 +150,7 @@ public class GameManager : MonoBehaviour
 
     public void Command_QuitGame(string[] arg, CommandInfo cmdi)
     {
-        if (arg[0] == "help" || arg[0] == "?")
+        if (commandManager.CheckHelpCommand(arg))
         {
             terminal.AddInterpreterLines(cmdi.HELPRESPONSE);
         }

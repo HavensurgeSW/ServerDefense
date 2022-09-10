@@ -11,6 +11,9 @@ GameObject:
   - component: {fileID: 7517854907445148176}
   - component: {fileID: 8062796150195501830}
   - component: {fileID: 151229865600273899}
+  - component: {fileID: 6097502181980172665}
+  - component: {fileID: 1094151088146952505}
+  - component: {fileID: 2819787192404132390}
   m_Layer: 0
   m_Name: Firewall
   m_TagString: Untagged
@@ -97,3 +100,58 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e8da716e8a6f2e48a9abd6f35f14311, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  range: 3
+  damage: 2
+  aimbot: {fileID: 1094151088146952505}
+  firerate: 1
+--- !u!58 &6097502181980172665
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2447185751727838718}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.5
+--- !u!114 &1094151088146952505
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2447185751727838718}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3eda0cb3a6233274e89865bdea20a4ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targets: []
+  circleCollider: {fileID: 6097502181980172665}
+--- !u!50 &2819787192404132390
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2447185751727838718}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0

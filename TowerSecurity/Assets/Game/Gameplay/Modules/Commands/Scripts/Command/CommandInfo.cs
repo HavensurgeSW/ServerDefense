@@ -2,7 +2,7 @@ using System.Collections.Generic;
 
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "CommandInfo")]
+[CreateAssetMenu(menuName = "ScriptableObjects/Commands/BaseCommandInfo")]
 public class CommandInfo : ScriptableObject {
     [SerializeField]private string id;
     [SerializeField]private int argCount;

@@ -9,14 +9,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 191838e6e5754f94a9f2873fa5b7bbe2, type: 3}
-  m_Name: HELLO_Command
+  m_Script: {fileID: 11500000, guid: 99f328fe013ab4b498835bd8bd3c7378, type: 3}
+  m_Name: HELP_Command
   m_EditorClassIdentifier: 
-  id: hello
+  id: help
   argCount: 0
-  succResponse:
-  - Welcome to the system, Administrator
-  helpResponse:
-  - Bruh
-  errorResponse:
-  - This is the HELLO error message
+  succResponse: []
+  helpResponse: []
+  errorResponse: []
+  helpKeywords:
+  - help
+  - '?'
