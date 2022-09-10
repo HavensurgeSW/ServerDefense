@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Tower : MonoBehaviour
@@ -10,9 +8,31 @@ public class Tower : MonoBehaviour
 
     [SerializeField] private float firerate = 1f;
     float timer = 0f;
+
     private void Awake()
     {
+        aimbot.Init("Enemy");
         aimbot.SetRange(range);
+    }
+
+    private void Update()
+    {
+        if (timer >= firerate)
+        {
+            if (aimbot.ContainsTargets())
+            {
+                if (aimbot.TryGetTargetComponent(out Enemy enemy))
+                {
+                    DealDamage(enemy);
+                }
+            }
+
+            timer = 0;
+        }
+        else
+        {
+            timer += Time.deltaTime;
+        }
     }
 
     private void OnDrawGizmos()
@@ -21,20 +41,8 @@ public class Tower : MonoBehaviour
         Gizmos.DrawWireSphere(transform.position, range);
     }
 
-    void DealDamage(Enemy enemy) {
-        enemy.ReceiveDamage(damage);
-    }
-
-    private void Update()
+    void DealDamage(Enemy enemy)
     {
-        if (timer >= firerate)
-        {
-            if(aimbot.ContainsTargets())
-                DealDamage(aimbot.GetTarget<Enemy>(0));
-            timer = 0;
-        }
-        else {
-            timer += Time.deltaTime;
-        }
+        enemy.ReceiveDamage(damage);
     }
 }
